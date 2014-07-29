@@ -509,6 +509,7 @@ NSString * const kTextHidden = @"\u200D"; // Zero-Width Joiner
 	_removesTokensOnEndEditing = YES;
 	_tokenizingCharacters = [NSCharacterSet characterSetWithCharactersInString:@","];
     _tokenLimit = -1;
+    _animationDuration = 0.3;
 }
 
 #pragma mark Property Overrides
@@ -815,7 +816,7 @@ NSString * const kTextHidden = @"\u200D"; // Zero-Width Joiner
 	if (self.bounds.size.height != newHeight){
 		
 		// Animating this seems to invoke the triple-tap-delete-key-loop-problem-thing™
-		[UIView animateWithDuration:(animated ? 0.3 : 0) animations:^{
+		[UIView animateWithDuration:(animated ? self.animationDuration : 0) animations:^{
 			[self setFrame:((CGRect){self.frame.origin, {self.bounds.size.width, newHeight}})];
 			[self sendActionsForControlEvents:(UIControlEvents)TITokenFieldControlEventFrameWillChange];
 			
