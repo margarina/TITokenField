@@ -405,10 +405,18 @@ NSString * const kTextHidden = @"\u200D"; // Zero-Width Joiner
 	CGFloat newHeight = [self layoutTokensInternal];
 	if (self.bounds.size.height != newHeight){
 		
+        // In case we are using autolayout.
+        [self.superview layoutIfNeeded];
+        
 		// Animating this seems to invoke the triple-tap-delete-key-loop-problem-thing™
 		[UIView animateWithDuration:(animated ? self.animationDuration : 0) animations:^{
-			[self setFrame:((CGRect){self.frame.origin, {self.bounds.size.width, newHeight}})];
+            // Perform appropriate transformation logic (if we are using autolayout or not).
+            self.tokenFieldHeightConstraint ? self.tokenFieldHeightConstraint.constant = newHeight : [self setFrame:((CGRect){self.frame.origin, {self.bounds.size.width, newHeight}})];
+			
 			[self sendActionsForControlEvents:(UIControlEvents)TITokenFieldControlEventFrameWillChange];
+            
+            // In case we are using autolayout.
+            [self.superview layoutIfNeeded];
 			
 		} completion:^(BOOL complete){
 			if (complete) [self sendActionsForControlEvents:(UIControlEvents)TITokenFieldControlEventFrameDidChange];
