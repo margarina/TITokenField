@@ -361,6 +361,13 @@ NSString * const kTextHidden = @"\u200D"; // Zero-Width Joiner
 	if (_editable) [self selectToken:token];
 }
 
+- (CGFloat)calculateSingleRowHeight
+{
+    // Calculation retrieved from the start of 'layoutTokensInternal' method.
+    CGFloat topMargin = floor(self.font.lineHeight * 4 / 7);
+	return ceilf(self.font.lineHeight) + topMargin + 5 + topMargin - 1;
+}
+
 - (CGFloat)layoutTokensInternal {
 	
 	CGFloat topMargin = floor(self.font.lineHeight * 4 / 7);
