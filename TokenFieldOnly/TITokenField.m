@@ -413,6 +413,11 @@ NSString * const kTextHidden = @"\u200D"; // Zero-Width Joiner
             // Perform appropriate transformation logic (if we are using autolayout or not).
             self.tokenFieldHeightConstraint ? self.tokenFieldHeightConstraint.constant = newHeight : [self setFrame:((CGRect){self.frame.origin, {self.bounds.size.width, newHeight}})];
 			
+            if ([self.delegate respondsToSelector:@selector(tokenField:heightWillChange:)])
+            {
+                [self.delegate tokenField:self heightWillChange:newHeight];
+            }
+            
 			[self sendActionsForControlEvents:(UIControlEvents)TITokenFieldControlEventFrameWillChange];
             
             // In case we are using autolayout.

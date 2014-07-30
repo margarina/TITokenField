@@ -40,6 +40,8 @@
 - (BOOL)tokenField:(TITokenField *)tokenField willRemoveToken:(TIToken *)token;
 - (void)tokenField:(TITokenField *)tokenField didRemoveToken:(TIToken *)token;
 
+- (void)tokenField:(TITokenField *)tokenField heightWillChange:(CGFloat)newHeight;
+
 @end
 
 @interface TITokenFieldInternalDelegate : NSObject <UITextFieldDelegate>
