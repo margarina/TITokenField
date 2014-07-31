@@ -94,6 +94,8 @@ NSString * const kTextHidden = @"\u200D"; // Zero-Width Joiner
 	[_internalDelegate setTokenField:self];
 	[super setDelegate:_internalDelegate];
 	
+    self.clearsTextOnEndEditing = NO;
+    
 	_tokens = [NSMutableArray array];
 	_editable = YES;
 	_removesTokensOnEndEditing = YES;
@@ -169,7 +171,14 @@ NSString * const kTextHidden = @"\u200D"; // Zero-Width Joiner
 	[_selectedToken setSelected:NO];
 	_selectedToken = nil;
 	
-	[self tokenizeText];
+	if (self.clearsTextOnEndEditing)
+    {
+        self.text = nil;
+    }
+    else
+    {
+        [self tokenizeText];
+    }
 	
 	if (_removesTokensOnEndEditing){
 		
@@ -638,7 +647,10 @@ NSString * const kTextHidden = @"\u200D"; // Zero-Width Joiner
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 	
-	[_tokenField tokenizeText];
+	if (!self.tokenField.clearsTextOnEndEditing)
+    {
+        [_tokenField tokenizeText];
+    }
 	
 	if ([_delegate respondsToSelector:@selector(textFieldShouldReturn:)]){
 		return [_delegate textFieldShouldReturn:textField];
