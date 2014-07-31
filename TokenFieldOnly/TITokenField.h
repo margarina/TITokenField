@@ -63,6 +63,7 @@ typedef enum {
 @property (weak, nonatomic, readonly) NSArray * tokenObjects;
 @property (weak, nonatomic) NSLayoutConstraint *tokenFieldHeightConstraint;
 @property (nonatomic, assign) CGFloat animationDuration;
+@property (nonatomic, assign) BOOL clearsTextOnTokenAdd;
 @property (nonatomic, assign) BOOL clearsTextOnEndEditing;
 @property (nonatomic, assign) BOOL editable;
 @property (nonatomic, assign) BOOL resultsModeEnabled;

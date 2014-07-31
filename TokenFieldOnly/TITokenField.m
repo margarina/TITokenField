@@ -94,6 +94,7 @@ NSString * const kTextHidden = @"\u200D"; // Zero-Width Joiner
 	[_internalDelegate setTokenField:self];
 	[super setDelegate:_internalDelegate];
 	
+    self.clearsTextOnTokenAdd = YES;
     self.clearsTextOnEndEditing = NO;
     
 	_tokens = [NSMutableArray array];
@@ -341,7 +342,10 @@ NSString * const kTextHidden = @"\u200D"; // Zero-Width Joiner
 	[_selectedToken setSelected:NO];
 	_selectedToken = nil;
 	
-	[self setText:kTextEmpty];
+	if (self.clearsTextOnTokenAdd)
+    {
+        [self setText:kTextEmpty];
+    }
 }
 
 - (void)tokenizeText {
