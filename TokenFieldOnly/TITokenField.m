@@ -289,7 +289,7 @@ NSString * const kTextHidden = @"\u200D"; // Zero-Width Joiner
 		}
 		
 		[self setResultsModeEnabled:NO];
-		[self deselectSelectedToken];
+		[self deselectSelectedTokenWithTextClear:self.clearsTextOnTokenAdd];
 	}
 }
 
@@ -339,10 +339,15 @@ NSString * const kTextHidden = @"\u200D"; // Zero-Width Joiner
 
 - (void)deselectSelectedToken {
 	
+	[self deselectSelectedTokenWithTextClear:YES];
+}
+
+- (void)deselectSelectedTokenWithTextClear:(BOOL)textClear {
+	
 	[_selectedToken setSelected:NO];
 	_selectedToken = nil;
 	
-	if (self.clearsTextOnTokenAdd)
+	if (textClear)
     {
         [self setText:kTextEmpty];
     }
