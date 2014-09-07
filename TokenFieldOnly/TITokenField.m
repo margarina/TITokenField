@@ -96,6 +96,7 @@ NSString * const kTextHidden = @"\u200D"; // Zero-Width Joiner
 	
     self.clearsTextOnTokenAdd = YES;
     self.clearsTextOnEndEditing = NO;
+    self.minHeight = 30.0;
     
 	_tokens = [NSMutableArray array];
 	_editable = YES;
@@ -427,7 +428,7 @@ NSString * const kTextHidden = @"\u200D"; // Zero-Width Joiner
 #pragma mark View Handlers
 - (void)layoutTokensAnimated:(BOOL)animated {
 	
-	CGFloat newHeight = [self layoutTokensInternal];
+	CGFloat newHeight = MAX(self.minHeight, [self layoutTokensInternal]);
 	if (self.bounds.size.height != newHeight){
 		
         // In case we are using autolayout.
