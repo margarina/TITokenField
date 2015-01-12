@@ -175,7 +175,8 @@ NSString * const kTextHidden = @"\u200D"; // Zero-Width Joiner
 	
 	if (self.clearsTextOnEndEditing)
     {
-        self.text = nil;
+        self.text = kTextEmpty;
+        [self didChangeText];
     }
     else
     {
