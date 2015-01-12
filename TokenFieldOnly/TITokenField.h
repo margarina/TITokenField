@@ -72,6 +72,7 @@ typedef enum {
 @property (nonatomic) int tokenLimit;
 @property (nonatomic, strong) NSCharacterSet * tokenizingCharacters;
 @property (nonatomic, assign) CGFloat minHeight;
+@property (nonatomic, strong) UIColor *placeholderColor;
 
 - (void)addToken:(TIToken *)title;
 - (TIToken *)addTokenWithTitle:(NSString *)title;

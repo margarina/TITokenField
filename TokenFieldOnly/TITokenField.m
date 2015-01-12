@@ -104,6 +104,7 @@ NSString * const kTextHidden = @"\u200D"; // Zero-Width Joiner
 	_tokenizingCharacters = [NSCharacterSet characterSetWithCharactersInString:@","];
     _tokenLimit = -1;
     _animationDuration = 0.3;
+    _placeholderColor = [UIColor colorWithWhite:0.75 alpha:1];
 }
 
 #pragma mark Property Overrides
@@ -391,7 +392,7 @@ NSString * const kTextHidden = @"\u200D"; // Zero-Width Joiner
 - (CGFloat)layoutTokensInternal {
 	
 	CGFloat topMargin = floor(self.font.lineHeight * 4 / 7);
-	CGFloat leftMargin = self.leftViewWidth + 12;
+	CGFloat leftMargin = self.leftViewWidth + 8;
 	CGFloat hPadding = 8;
 	CGFloat rightMargin = self.rightViewWidth + hPadding;
 	CGFloat lineHeight = ceilf(self.font.lineHeight) + topMargin + 5;
@@ -513,7 +514,7 @@ NSString * const kTextHidden = @"\u200D"; // Zero-Width Joiner
         UILabel * label =  _placeHolderLabel;
 		if (!label || ![label isKindOfClass:[UILabel class]]){
 			label = [[UILabel alloc] initWithFrame:CGRectMake(_tokenCaret.x + 3, _tokenCaret.y + 2, self.rightView.bounds.size.width, self.rightView.bounds.size.height)];
-			[label setTextColor:[UIColor colorWithWhite:0.75 alpha:1]];
+			[label setTextColor:self.placeholderColor];
 			 _placeHolderLabel = label;
             [self addSubview: _placeHolderLabel];
 		}
