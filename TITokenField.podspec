@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'TITokenField'
-  s.version  = '1.0.10'
+  s.version  = '1.0.11'
   s.source   = { :git => 'https://github.com/margarina/TITokenField.git' }
   s.authors =  { "Tom Irving" => "info@thermoglobalnuclearwar.com" }
   s.source_files = 'TokenFieldOnly/*'
